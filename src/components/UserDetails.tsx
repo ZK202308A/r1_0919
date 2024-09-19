@@ -1,10 +1,19 @@
-import React from 'react';
+import {ReactElement, ReactNode} from 'react';
+import {UserData} from "../types/count.ts";
 
-function UserDetails(props) {
+interface UserProps {
+    target:UserData
+    showUser:(user:UserData) => void
+    children:ReactNode
+}
 
-    console.log(props);
+function UserDetails({target, showUser, children}: UserProps): ReactElement {
 
-    if(props.age <= 18){
+    console.log(target);
+
+    console.log(showUser);
+
+    if(target.age <= 18){
         return (
             <h1>Minor</h1>
         )
@@ -16,7 +25,7 @@ function UserDetails(props) {
             <h1>AAAAAAAAA</h1>
 
             <div className='row text-7xl bg-red-500'>
-                {props.children}
+                {children}
             </div>
 
         </div>

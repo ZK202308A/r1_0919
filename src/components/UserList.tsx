@@ -1,14 +1,15 @@
-import React from 'react';
+
 import UserDetails from "./UserDetails.tsx";
 import MyHello from "./MyHello.tsx";
+import {UserData} from "../types/count.ts";
 
-function UserList(props) {
+function UserList() {
 
-    const arr = [
-        {mid:'user1', mpw: '1111', mname:'Hong Gil Dong', age: 14}
+    const arr:[UserData] = [
+        {mid:'user1', mpw: '1111', mname:'Hong Gil Dong', age: 24}
     ]
 
-    const show = (user) => {
+    const show = (user:UserData): void => {
         console.log(user.mid +" " + user.mpw + " " + user.mname);
     }
 
@@ -18,7 +19,7 @@ function UserList(props) {
     return (
         <div className="bg-amber-700 text-xs">
             <h1 className='text-7xl'>User List</h1>
-            <UserDetails {...target} showUser={show}>
+            <UserDetails target = {target} showUser={show}>
                 <MyHello></MyHello>
             </UserDetails>
 
