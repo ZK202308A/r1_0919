@@ -1,13 +1,17 @@
 import  {ReactElement} from 'react';
 import {CountNum} from "../types/count.ts";
 
-function CountDisplay({num}: CountNum):ReactElement {
+interface CountDisplayProps {
+    count:CountNum
+}
+
+function CountDisplay({count}:CountDisplayProps):ReactElement {
 
     console.log()
 
     return (
         <div>
-            <h1>{num}</h1>
+            <h1>{count.num}</h1>
         </div>
     );
 }

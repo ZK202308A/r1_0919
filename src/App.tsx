@@ -13,7 +13,7 @@ function App() {
 
           <UserList></UserList>
 
-
+          <Count1/>
 
           <MyHello></MyHello>
       </>

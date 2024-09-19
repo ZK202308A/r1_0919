@@ -21,7 +21,7 @@ function Count1():ReactElement {
     return (
         <div className="border-2 w-1/2 h-1/4 bg-amber-200 justify-center flex m-3 p-3">
 
-            <CountDisplay num={count.num}></CountDisplay>
+            <CountDisplay count={count}></CountDisplay>
 
             <CountButtons fn={changeNum}></CountButtons>
         </div>
