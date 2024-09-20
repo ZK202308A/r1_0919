@@ -1,7 +1,7 @@
 import ProductsList from "./ProductsList.tsx";
 import CartDiv from "./CartDiv.tsx";
-import {ICartItem, IProduct} from "../../types/kiosk.ts";
-import {useState} from "react";
+import {IProduct} from "../../types/kiosk.ts";
+import useKiosk, {IUseKiosk} from "../../hooks/useKiosk.ts";
 
 function KioskMain() {
 
@@ -13,21 +13,7 @@ function KioskMain() {
         {pid:5, pname:'M5', price:7000, img:'http://localhost:8081/food/M5.jpeg'},
     ]
 
-    const [ cartItems, setCartItems] = useState<ICartItem[]>([])
-
-    //addToCart 파라미터  , 리턴타입
-    const addToCart = (product: IProduct) :void  => {
-
-        //카트안에 있는지 확인
-        const target:ICartItem|undefined =  cartItems.find( item => item.product.pid === product.pid )
-
-        if(!target) {
-            setCartItems([...cartItems, {product:product, qty:1}])
-            return
-        }
-        target.qty += 1
-        setCartItems([...cartItems])
-    }
+    const {cartItems,addToCart,changeQty }:IUseKiosk = useKiosk()
 
 
     return (
@@ -36,7 +22,7 @@ function KioskMain() {
                 <ProductsList products = {products} addToCart={addToCart}></ProductsList>
             </div>
             <div className='w-1/3 bg-blue-600 m-2 p-2 '>
-                <CartDiv></CartDiv>
+                <CartDiv cartItems = {cartItems} changeQty={changeQty}></CartDiv>
             </div>
 
         </div>
