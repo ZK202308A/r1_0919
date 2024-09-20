@@ -5,9 +5,10 @@ import {ReactElement} from "react";
 interface ProductListProps {
     products: IProduct[];
     addToCart: (product: IProduct) => void;
+    changeType: (choice:string) => void;
 }
 
-function ProductsList({products, addToCart}: ProductListProps): ReactElement {
+function ProductsList({products, addToCart, changeType}: ProductListProps): ReactElement {
 
     const productLI = products.map((product: IProduct) => {
         const {pid,pname,price,img} = product;
@@ -21,6 +22,12 @@ function ProductsList({products, addToCart}: ProductListProps): ReactElement {
 
     return (
         <div>
+            <div className='flex m-2 p-2 bg-blue-500 border-2 font-extrabold '>
+                <div className='p-2'  onClick={() => changeType('ALL')} >ALL</div>
+                <div className='p-2' onClick={() => changeType('A')} >A</div>
+                <div className='p-2' onClick={() => changeType('B')} >B</div>
+                <div className='p-2' onClick={() => changeType('C')} >C</div>
+            </div>
             <ul className='flex flex-wrap '>
                 {productLI}
             </ul>

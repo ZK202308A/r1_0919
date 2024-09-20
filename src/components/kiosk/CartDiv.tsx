@@ -10,6 +10,8 @@ function CartDiv({cartItems, changeQty}: CartDivProps): ReactElement {
 
     console.log(cartItems)
 
+
+
     const listLI = cartItems.map(item => {
         const {product, qty} = item
         return (
