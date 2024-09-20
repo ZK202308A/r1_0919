@@ -1,6 +1,4 @@
-import MyHello from "./components/MyHello.tsx";
-import Count1 from "./components/Count1.tsx";
-import UserList from "./components/UserList.tsx";
+import KioskMain from "./components/kiosk/KioskMain.tsx";
 
 
 function App() {
@@ -11,11 +9,7 @@ function App() {
               Hello world!
           </h1>
 
-          <UserList></UserList>
-
-          <Count1/>
-
-          <MyHello></MyHello>
+          <KioskMain></KioskMain>
       </>
   )
 }
