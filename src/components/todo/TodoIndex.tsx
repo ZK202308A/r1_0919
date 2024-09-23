@@ -18,7 +18,7 @@ function TodoIndex():ReactElement {
 
             <TodoInput changePage ={changePage}></TodoInput>
 
-            <TodoList pageNum={page} refresh={refresh}></TodoList>
+            <TodoList pageNum={page} refresh={refresh} changePage ={changePage}></TodoList>
 
         </div>
     );

@@ -14,4 +14,5 @@ export interface IPageResponse {
     first: boolean
     last: boolean
     size: number
+    totalPages: number
 }

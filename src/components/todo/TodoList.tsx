@@ -2,6 +2,7 @@ import {ReactElement, useEffect, useState} from "react";
 import {IPageResponse, ITodo} from "../../types/todo.ts";
 import {getTodoList} from "../../api/todoAPI.ts";
 import LoadingComponent from "../common/LoadingComponent.tsx";
+import PageComponent from "../common/PageComponent.tsx";
 
 const initialState: IPageResponse = {
     content: [],
@@ -9,15 +10,17 @@ const initialState: IPageResponse = {
     last: false,
     number: 0,
     size: 0,
-    totalElements: 0
+    totalElements: 0,
+    totalPages: 0
 }
 
 interface TodoListProps {
     pageNum:number,
-    refresh:boolean
+    refresh:boolean,
+    changePage:(p:number) => void;
 }
 
-function TodoList({pageNum, refresh}:TodoListProps):ReactElement {
+function TodoList({pageNum, refresh, changePage}:TodoListProps):ReactElement {
 
     const [pageData, setPageData] = useState<IPageResponse>(initialState)
 
@@ -34,7 +37,7 @@ function TodoList({pageNum, refresh}:TodoListProps):ReactElement {
             setPageData(data)
             setTimeout(()=> {
                 setLoading(false)
-            }, 1000)
+            }, 600)
         })
 
     },[pageNum,refresh])
@@ -60,6 +63,11 @@ function TodoList({pageNum, refresh}:TodoListProps):ReactElement {
             <ul>
                 {todoLI}
             </ul>
+
+            <div>
+                <PageComponent pageResponse={pageData} changePage={changePage}></PageComponent>
+            </div>
+
         </div>
     );
 }
