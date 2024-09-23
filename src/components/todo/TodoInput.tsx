@@ -11,10 +11,13 @@ const initState:ITodo ={
     dueDate:'',
 }
 
+interface TodoInputProps {
+    changePage:(p:number) => void;
+}
 
-function TodoInput() {
+function TodoInput({changePage}:TodoInputProps) {
 
-    const [todo, setTodo] = useState<ITodo>(initState)
+    const [todo, setTodo] = useState<ITodo>({...initState})
     const [loading, setLoading] = useState(false)
     const [resultData, setResultData] = useState<number>(0)
 
@@ -36,6 +39,8 @@ function TodoInput() {
 
     const clearResult = ():void => {
         setResultData(0)
+        setTodo(initState)
+        changePage(1)
     }
 
     return (
@@ -43,9 +48,9 @@ function TodoInput() {
 
             {loading && <LoadingComponent/>}
 
-            {resultData !== 0 && <ResultModal msg={'등록완료'} callback={clearResult} /> }
+            {resultData !== 0 && <ResultModal msg={`${resultData}번 등록완료`} callback={clearResult} /> }
 
-            <label htmlFor="title" className="text-sm font-semibold text-gray-700">Title</label>
+            <label  className="text-sm font-semibold text-gray-700">Title</label>
             <input
                 type="text"
                 name="title"
@@ -55,7 +60,7 @@ function TodoInput() {
                 onChange={e => handleChange(e)}
             />
 
-            <label htmlFor="writer" className="text-sm font-semibold text-gray-700">Writer</label>
+            <label className="text-sm font-semibold text-gray-700">Writer</label>
             <input
                 type="text"
                 name="writer"
@@ -64,7 +69,7 @@ function TodoInput() {
                 value={todo.writer}
                 onChange={e => handleChange(e)}
             />
-            <label htmlFor="dueDate" className="text-sm font-semibold text-gray-700">DueDate</label>
+            <label  className="text-sm font-semibold text-gray-700">DueDate</label>
             <input
                 type="date"
                 name="dueDate"

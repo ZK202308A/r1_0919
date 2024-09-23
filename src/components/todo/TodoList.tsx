@@ -12,19 +12,24 @@ const initialState: IPageResponse = {
     totalElements: 0
 }
 
-function TodoList():ReactElement {
+interface TodoListProps {
+    pageNum:number,
+    refresh:boolean
+}
 
-    const [page, setPage] = useState(1)
-    const [refresh, setRefresh] = useState(false)
+function TodoList({pageNum, refresh}:TodoListProps):ReactElement {
+
     const [pageData, setPageData] = useState<IPageResponse>(initialState)
 
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
 
+        console.log("useEffect.........." + pageNum)
+
         setLoading(true)
 
-        getTodoList(page).then(data => {
+        getTodoList(pageNum).then(data => {
             console.log(data)
             setPageData(data)
             setTimeout(()=> {
@@ -32,12 +37,13 @@ function TodoList():ReactElement {
             }, 1000)
         })
 
-    },[page,refresh])
+    },[pageNum,refresh])
 
 
     const todoLI = pageData?.content?.map( (todo:ITodo) => {
         return (
             <li key={todo.mno}>
+                {todo.mno} -
                 {todo.title} -
                 {todo.writer} -
                 {todo.dueDate}
