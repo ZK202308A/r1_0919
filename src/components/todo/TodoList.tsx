@@ -1,4 +1,4 @@
-import {ReactElement, useEffect, useState} from "react";
+import {ReactElement, useEffect,  useState} from "react";
 import {IPageResponse, ITodo} from "../../types/todo.ts";
 import {getTodoList} from "../../api/todoAPI.ts";
 import LoadingComponent from "../common/LoadingComponent.tsx";
