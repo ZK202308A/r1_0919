@@ -1,5 +1,6 @@
 import {ITodo} from "../../types/todo.ts";
 import {ChangeEvent, useState} from "react";
+import {postTodo} from "../../api/todoAPI.ts";
 
 
 const initState:ITodo ={
@@ -19,6 +20,15 @@ function TodoInput() {
 
         setTodo({...todo})
     }
+
+    const handleClick = () => {
+
+        postTodo(todo).then(number => {
+            alert(number)
+        })
+
+    }
+
 
     return (
         <div className="flex flex-col space-y-4 w-96 mx-auto">
@@ -50,6 +60,14 @@ function TodoInput() {
                 value={todo.dueDate}
                 onChange={e => handleChange(e)}
             />
+
+            <button
+                type="submit"
+                className="bg-blue-500 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-300 transition duration-300"
+                onClick={handleClick}
+            >
+                Submit
+            </button>
         </div>
     );
 }

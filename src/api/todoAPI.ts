@@ -1,4 +1,4 @@
-import {IPageResponse} from "../types/todo.ts";
+import {IPageResponse, ITodo} from "../types/todo.ts";
 import  axios from "axios";
 
 
@@ -13,5 +13,13 @@ export const getTodoList = async ( page?:number, size?:number): Promise<IPageRes
 
     const res = await axios.get(`${host}/list?page=${pageValue}&size=${sizeValue}`)
     return res.data
+
+}
+
+export const postTodo  = async (todo:ITodo) : Promise<number> => {
+
+    const res = await axios.post(`${host}`, todo)
+
+    return res.data.mno
 
 }
